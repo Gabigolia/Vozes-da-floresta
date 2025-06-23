@@ -3,93 +3,921 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vozes da Floresta</title>
-    <link rel="stylesheet" href="site.css">
+    <title>Suplício dos Esquecidos - A Luta Yanomami</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1a5c1a;
+            --secondary-color: #2e8b57;
+            --accent-color: #ff7f50;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --text-color: #333;
+            --text-light: #6c757d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.7;
+            color: var(--text-color);
+            background-color: var(--light-color);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+       
+        header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://img.socioambiental.org/d/239269-1/yanomami_11.jpg') center/cover no-repeat;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        header p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .scroll-down {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 2rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0) translateX(-50%);}
+            40% {transform: translateY(-20px) translateX(-50%);}
+            60% {transform: translateY(-10px) translateX(-50%);}
+        }
+
+      
+        nav {
+            background-color: var(--primary-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            color: white;
+            font-weight: bold;
+            font-size: 1.5rem;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent-color);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        
+        section {
+            padding: 60px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--primary-color);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent-color);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            align-items: center;
+        }
+
+        .text-content {
+            order: 1;
+        }
+
+        .image-content {
+            order: 2;
+            text-align: center;
+        }
+
+        .image-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .image-content img:hover {
+            transform: scale(1.02);
+        }
+
+        
+        section:nth-child(even) .content-grid .text-content {
+            order: 2;
+        }
+
+        section:nth-child(even) .content-grid .image-content {
+            order: 1;
+        }
+
+        
+        .issues-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .issue-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .issue-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .issue-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .issue-content {
+            padding: 20px;
+        }
+
+        .issue-content h3 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+
+        
+        .help-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .help-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .help-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .help-icon {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        .help-card h3 {
+            color: var(--primary-color);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: background-color 0.3s, transform 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #ff6347;
+            transform: translateY(-3px);
+        }
+
+        
+        .stats-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://www.dmt-group.com.br/fileadmin/user_upload/1212re.jpg') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 80px 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .stat-item {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--accent-color);
+        }
+
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 40px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            height: 250px;
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.1);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            color: white;
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent-color);
+            bottom: 0;
+            left: 0;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent-color);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--accent-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            text-decoration: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            z-index: 999;
+        }
+
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background-color: var(--primary-color);
+        }
+
+        
+        @media (max-width: 992px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .text-content, .image-content {
+                order: initial !important;
+            }
+            
+            .image-content {
+                margin-top: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                width: 100%;
+                display: none;
+                margin-top: 20px;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 10px 0;
+                margin-left: 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                top: 15px;
+                right: 20px;
+            }
+            
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            header p {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .help-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .slide-up {
+            animation: slideUp 1s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Vozes da Floresta: A Luta do Povo Yanomami</h1>
-        <p>Entenda a história e como você pode ajudar!</p>
+    
+    <header class="fade-in">
+        <div class="container">
+            <h1>Suplício dos Esquecidos</h1>
+            <p>A Verdade dos Yanomamis Precisa Ser Ouvida - Entenda sua história e descubra como você pode ajudar</p>
+            <a href="#introducao" class="scroll-down"><i class="fas fa-chevron-down"></i></a>
+        </div>
     </header>
 
+    
     <nav>
-        <ul>
-            <li><a href="#introducao">Introdução</a></li>
-            <li><a href="#historia">História dos Yanomami</a></li>
-            <li><a href="#conflitos">Conflitos e Desafios</a></li>
-            <li><a href="#ajuda">Como Ajudar</a></li>
-        </ul>
+        <div class="nav-container container">
+            <a href="#" class="logo">Yanomami</a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#introducao">Introdução</a></li>
+                <li><a href="#historia">História</a></li>
+                <li><a href="#conflitos">Conflitos</a></li>
+                <li><a href="#estatisticas">Estatísticas</a></li>
+                <li><a href="#ajuda">Como Ajudar</a></li>
+                <li><a href="#galeria">Galeria</a></li>
+            </ul>
+        </div>
     </nav>
 
+    
     <main>
-        <section id="introducao">
-            <h2>Introdução</h2>
-            <p>Os povos Yanomami enfrentam graves ameaças, desde doenças até a destruição de suas terras e cultura. Este site tem como objetivo informar sobre esses desafios e sugerir formas de apoio.</p>
-            <img src="https://assets.survivalinternational.org/pictures/265/braz-yano-fw-32_1170.jpg" width="600px">
-        </section>
-
-        <section id="historia">
-            <h2>História dos Yanomami</h2>
-            <p>Os Yanomami habitam a região amazônica na fronteira entre o Brasil e a Venezuela. Sua cultura e tradições estão intimamente ligadas à floresta.  Como a maioria dos povos indígenas do continente, os Yanomami 
-                provavelmente Segundo uma das hipóteses mais aceitas por pesquisadores, os Yanomami são descendentes de um antigo grupo indígena (chamado de “proto-Yanomami”) instalado há um milênio no entorno da serra, onde as comunidades se isolaram por um longo período até os séculos 19 e 20.
-                migraram pelo Estreito de Bering entre a Ásia e a América cerca de 15.000 anos atrás, seguindo lentamente para a América do Sul. Hoje, sua população total é de cerca de 45.000 indígenas.</p>
-            <img src="https://ichef.bbci.co.uk/ace/ws/640/cpsprodpb/0476/production/_101024110_img_7404.jpg.webp" width="600px">
-        </section>
-
-        <section id="conflitos">
-            <h2>Conflitos e Desafios</h2>
-            <img src="https://racismoambiental.net.br/wp-content/uploads/2018/12/claudia-andujar-menino.jpg" width="600px">
-            <article>
-                <h3>Garimpo Ilegal</h3>
-                <p>A invasão de garimpeiros é uma das maiores ameaças aos Yanomami, com impactos devastadores no meio ambiente e na saúde da população. Os garimpeiros voltaram para a área, provocando tensões. Em 1993, um grupo de garimpeiros entrou na aldeia de Haximu e assassinou 16 Yanomami, incluindo um bebê.
-                    Depois de um clamor nacional e internacional, um tribunal brasileiro condenou cinco garimpeiros por genocídio. Apenas dois deles estão cumprindo sentenças na prisão.
-                    Este é um dos poucos casos, em todo o mundo, onde um tribunal condenou os réus por genocídio.
-                    A invasão de garimpeiros à terra Yanomami continua. A situação na Venezuela é muito séria, e alguns Yanomami têm sido envenenados e expostos a ataques violentos. As autoridades pouco têm feito para resolver estes problemas.</p>
-                <img src="https://www.dmt-group.com.br/fileadmin/user_upload/1212re.jpg" width="600ox">
-            </article>
-            <article>
-                <h3>Doenças e Saúde</h3>
-                <p>O contato com outros grupos e a presença de doenças trazidas por forasteiros aumentaram a mortalidade entre os Yanomami. Até novembro de 2023, segundo a Secretária Especial de Saúde Indígena (Sesai), foram registrados na Terra Indígena Yanomami: 649 casos de malária — foram 15.561 em 2022. 5.598 casos de síndrome respiratória grave — 2.478 em 2022.</p>
-                <img src="https://agro2.com.br/wp-content/uploads/2023/02/comunidade-yanomami-2.jpg" width="600px">
-            </article>
-        </section>
-
-        <section id="ajuda">
-            <h2>Como Ajudar</h2>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSMZ8FOWsWsNVfqEb99iyT3tf5TKH6icQoHg&s" width="600px">
-            <article>
-                <h3>Doações</h3>
-                <p>Você pode apoiar financeiramente organizações que trabalham para proteger os Yanomami, como o Hutukara Associação Yanomami.</p>
-            </article>
-            <article>
-                <h3>Divulgação</h3>
-                <p>Compartilhe informações sobre os Yanomami e suas lutas. A conscientização é um passo importante para a mudança.</p>
-            </article>
-            <article>
-                <h3>Apoio Político</h3>
-                <p>Engaje-se em movimentos políticos que apoiem a preservação dos direitos indígenas e a proteção das terras Yanomami.</p>
-            </article>
         
-            <h3>Dados baseados e inspirados:
-            
-            <a href = "https://www.acaodacidadania.org.br/sos-yanomami/?gad_source=1&gclid=Cj0KCQiAlsy5BhDeARIsABRc6ZuqYR26lJmcSeBXcT-5TpzsTFlkXRkCZXh5OVtYxuLk7w0rc9iXMrkaArfDEALw_wcB" target = "_blank" >Ação da cidadania</a>
-
-
-
+        <section id="introducao" class="slide-up">
+            <div class="container">
+                <h2 class="section-title">Introdução</h2>
+                <div class="content-grid">
+                    <div class="text-content">
+                        <p>Os Yanomami são um dos últimos povos indígenas relativamente isolados da América do Sul, com uma população de aproximadamente 38.000 pessoas vivendo na floresta amazônica, na fronteira entre Brasil e Venezuela.</p>
+                        <p>Este povo enfrenta graves ameaças à sua sobrevivência: desde doenças trazidas por invasores até a destruição sistemática de seu território e cultura. A situação se agravou dramaticamente nos últimos anos com o aumento do garimpo ilegal e a redução das políticas de proteção.</p>
+                        <p>Este site tem como objetivo informar sobre esses desafios, mostrar a riqueza da cultura Yanomami e sugerir formas concretas de apoio e solidariedade.</p>
+                        <a href="#ajuda" class="btn">Quero Ajudar</a>
+                    </div>
+                    <div class="image-content">
+                        <img src="https://img.socioambiental.org/d/239269-1/yanomami_11.jpg" alt="Comunidade Yanomami">
+                    </div>
+                </div>
+            </div>
         </section>
-         <p>-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</p>       
-         <h3>Desenvolvido por:</h3>
-         <p>Juan Gabriel Loyola</p>
-         <p>Pedro Lucas Rodrigues</p>
-         <p>Luis Gabriel Viana</p>
+
         
-            
-            
-        <!-- Continue adicionando outros tópicos conforme necessário -->
+        <section id="historia" class="slide-up">
+            <div class="container">
+                <h2 class="section-title">História e Cultura Yanomami</h2>
+                <div class="content-grid">
+                    <div class="image-content">
+                        <img src="https://ichef.bbci.co.uk/ace/ws/640/cpsprodpb/0476/production/_101024110_img_7404.jpg.webp" alt="Aldeia Yanomami">
+                    </div>
+                    <div class="text-content">
+                        <p>Os Yanomami habitam a região amazônica há pelo menos mil anos, desenvolvendo uma cultura profundamente conectada com a floresta. Sua cosmovisão não separa natureza e humanidade - a floresta é parte fundamental de sua identidade.</p>
+                        <p>Segundo pesquisas antropológicas, os Yanomami descendem de um antigo grupo indígena que se estabeleceu na região da Serra do Parima, onde viveram isolados por séculos até os primeiros contatos significativos com o mundo exterior no século XX.</p>
+                        <p>Sua sociedade é organizada em comunidades autônomas (yanomae thëpë), com uma estrutura social igualitária e complexos sistemas de troca e reciprocidade. A língua Yanomami faz parte de uma família linguística isolada, com várias variações dialetais.</p>
+                        <p>Os rituais xamânicos, como o consumo ritual da ayahuasca (yãkõana), desempenham papel central na vida espiritual Yanomami, mediando a relação com o mundo dos espíritos (xapiripë).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+        <section id="conflitos" class="slide-up">
+            <div class="container">
+                <h2 class="section-title">Conflitos e Ameaças</h2>
+                <p class="text-center" style="margin-bottom: 40px;">Os Yanomami enfrentam múltiplas ameaças à sua sobrevivência física e cultural</p>
+                
+                <div class="issues-container">
+                    <div class="issue-card">
+                        <img src="https://www.dmt-group.com.br/fileadmin/user_upload/1212re.jpg" alt="Garimpo ilegal" class="issue-img">
+                        <div class="issue-content">
+                            <h3>Garimpo Ilegal</h3>
+                            <p>A invasão de garimpeiros é a maior ameaça atual, com mais de 20.000 garimpeiros ilegais operando no território Yanomami. Eles contaminam os rios com mercúrio, destroem a floresta e trazem violência.</p>
+                            <p>Em 1993, ocorreu o Massacre de Haximu, onde garimpeiros assassinaram 16 Yanomami, incluindo crianças e idosos. Foi o único caso no Brasil reconhecido como genocídio pela justiça.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="issue-card">
+                        <img src="https://agro2.com.br/wp-content/uploads/2023/02/comunidade-yanomami-2.jpg" alt="Crise de saúde" class="issue-img">
+                        <div class="issue-content">
+                            <h3>Crise Sanitária</h3>
+                            <p>O contato com invasores trouxe epidemias de malária, COVID-19 e outras doenças para as quais os Yanomami têm pouca imunidade. Postos de saúde são frequentemente abandonados ou sem recursos.</p>
+                            <p>Em 2022, uma grave crise de desnutrição e malária levou a uma emergência humanitária declarada pelo governo brasileiro, com centenas de mortes evitáveis, principalmente de crianças.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="issue-card">
+                        <img src="https://racismoambiental.net.br/wp-content/uploads/2018/12/claudia-andujar-menino.jpg" alt="Ameaças culturais" class="issue-img">
+                        <div class="issue-content">
+                            <h3>Ameaças Culturais</h3>
+                            <p>A pressão de missionários religiosos, a invasão de terras e a assimilação forçada ameaçam a continuidade das tradições Yanomami. Jovens são particularmente vulneráveis à perda de sua identidade cultural.</p>
+                            <p>Línguas, conhecimentos tradicionais sobre plantas medicinais e práticas espirituais estão em risco com o aumento do contato descontrolado com a sociedade nacional.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+        <section id="estatisticas" class="stats-section slide-up">
+            <div class="container">
+                <h2 class="section-title">A Crise em Números</h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">75%</div>
+                        <p>das crianças Yanomami sofrem de desnutrição crônica em algumas regiões</p>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">20,000+</div>
+                        <p>garimpeiros ilegais invadindo o território Yanomami</p>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">15,561</div>
+                        <p>casos de malária registrados em 2022</p>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">350</div>
+                        <p>crianças Yanomami morreram de causas evitáveis em 2022</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+        <section id="ajuda" class="slide-up">
+            <div class="container">
+                <h2 class="section-title">Como Você Pode Ajudar</h2>
+                <p class="text-center" style="margin-bottom: 40px;">Existem várias formas concretas de apoiar a luta Yanomami por sobrevivência e direitos</p>
+                
+                <div class="help-cards">
+                    <div class="help-card">
+                        <div class="help-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                        <h3>Doações</h3>
+                        <p>Apoie organizações que trabalham diretamente com os Yanomami, como a Hutukara Associação Yanomami e o Instituto Socioambiental.</p>
+                        <a href="https://www.socioambiental.org/pt-br" target="_blank" class="btn">Doar Agora</a>
+                    </div>
+                    
+                    <div class="help-card">
+                        <div class="help-icon"><i class="fas fa-share-alt"></i></div>
+                        <h3>Divulgação</h3>
+                        <p>Compartilhe informações confiáveis sobre a situação Yanomami. A conscientização é fundamental para pressionar autoridades.</p>
+                        <a href="#galeria" class="btn">Compartilhar</a>
+                    </div>
+                    
+                    <div class="help-card">
+                        <div class="help-icon"><i class="fas fa-gavel"></i></div>
+                        <h3>Apoio Político</h3>
+                        <p>Exija que políticos apoiem a demarcação de terras indígenas e combatam o garimpo ilegal. Participe de campanhas e abaixo-assinados.</p>
+                        <a href="https://www.acaodacidadania.org.br/sos-yanomami/" target="_blank" class="btn">Assinar Petição</a>
+                    </div>
+                    
+                    <div class="help-card">
+                        <div class="help-icon"><i class="fas fa-shopping-bag"></i></div>
+                        <h3>Consumo Consciente</h3>
+                        <p>Evite comprar ouro de origem duvidosa e apoie empresas comprometidas com a proteção dos direitos indígenas.</p>
+                        <a href="#" class="btn">Saiba Mais</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+        <section id="galeria" class="slide-up">
+            <div class="container">
+                <h2 class="section-title">Galeria Yanomami</h2>
+                <p class="text-center" style="margin-bottom: 40px;">Conheça a beleza e a resistência do povo Yanomami através dessas imagens</p>
+                
+                <div class="gallery">
+                    <div class="gallery-item">
+                        <img src="https://img.socioambiental.org/d/239269-1/yanomami_11.jpg" alt="Comunidade Yanomami" class="gallery-img">
+                        <div class="gallery-caption">
+                            <h4>Vida Comunitária</h4>
+                            <p>As malocas coletivas (yanos) são o centro da vida social Yanomami</p>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item">
+                        <img src="https://ichef.bbci.co.uk/ace/ws/640/cpsprodpb/0476/production/_101024110_img_7404.jpg.webp" alt="Aldeia Yanomami" class="gallery-img">
+                        <div class="gallery-caption">
+                            <h4>Habitação Tradicional</h4>
+                            <p>Malocas circulares construídas com materiais da floresta</p>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item">
+                        <img src="https://racismoambiental.net.br/wp-content/uploads/2018/12/claudia-andujar-menino.jpg" alt="Criança Yanomami" class="gallery-img">
+                        <div class="gallery-caption">
+                            <h4>Futuro Ameaçado</h4>
+                            <p>Crianças são as principais vítimas da crise humanitária</p>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item">
+                        <img src="https://www.dmt-group.com.br/fileadmin/user_upload/1212re.jpg" alt="Garimpo ilegal" class="gallery-img">
+                        <div class="gallery-caption">
+                            <h4>Destruição Ambiental</h4>
+                            <p>O garimpo deixa crateras e rios contaminados por mercúrio</p>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item">
+                        <img src="https://agro2.com.br/wp-content/uploads/2023/02/comunidade-yanomami-2.jpg" alt="Crise de saúde" class="gallery-img">
+                        <div class="gallery-caption">
+                            <h4>Emergência Sanitária</h4>
+                            <p>Falta de assistência médica adequada causa sofrimento evitável</p>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSMZ8FOWsWsNVfqEb99iyT3tf5TKH6icQoHg&s" alt="Resistência Yanomami" class="gallery-img">
+                        <div class="gallery-caption">
+                            <h4>Resistência Cultural</h4>
+                            <p>Os Yanomami continuam lutando por seus direitos e território</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <footer>
-        <p>Desenvolvido por Vozes da Floresta. Todos os direitos reservados.</p>
+    
+    <footer class="slide-up">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Sobre Nós</h3>
+                    <p>Somos um coletivo de ativistas e pesquisadores comprometidos com a defesa dos direitos indígenas e a divulgação de informações confiáveis sobre os povos originários do Brasil.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Links Úteis</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://www.socioambiental.org" target="_blank">Instituto Socioambiental</a></li>
+                        <li><a href="https://www.hutukara.org" target="_blank">Hutukara Associação Yanomami</a></li>
+                        <li><a href="https://www.acaodacidadania.org.br/sos-yanomami/" target="_blank">SOS Yanomami</a></li>
+                        <li><a href="https://apiboficial.org" target="_blank">Articulação dos Povos Indígenas do Brasil</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contato</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> contato@vozesdafloresta.org.br</li>
+                        <li><i class="fas fa-phone"></i> (11) 98765-4321</li>
+                        <li><i class="fas fa-map-marker-alt"></i> São Paulo - SP, Brasil</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>Desenvolvido por Juan Gabriel Loyola, Pedro Lucas Rodrigues e Luis Gabriel Viana</p>
+                <p>© 2023 Vozes da Floresta. Todos os direitos reservados.</p>
+            </div>
+        </div>
     </footer>
+
+    
+    <a href="#" class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></a>
+
+    
+    <script>
+       
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                if (this.getAttribute('href') === '#') return;
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+        
+        
+        const backToTop = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('active');
+            } else {
+                backToTop.classList.remove('active');
+            }
+        });
+        
+        
+        const scrollElements = document.querySelectorAll('.slide-up');
+        
+        const elementInView = (el, dividend = 1) => {
+            const elementTop = el.getBoundingClientRect().top;
+            
+            return (
+                elementTop <= 
+                (window.innerHeight || document.documentElement.clientHeight) / dividend
+            );
+        };
+        
+        const displayScrollElement = (element) => {
+            element.classList.add('slide-up');
+        };
+        
+        const handleScrollAnimation = () => {
+            scrollElements.forEach((el) => {
+                if (elementInView(el, 1.25)) {
+                    displayScrollElement(el);
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', () => {
+            handleScrollAnimation();
+        });
+        
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            handleScrollAnimation();
+        });
+    </script>
 </body>
 </html>
